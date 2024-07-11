@@ -9,7 +9,7 @@
   <title>HAF-RM: A Hybrid Alignment Framework for Reward Model Training</title>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1M114XVB7"></script>
+<!--   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1M114XVB7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -19,7 +19,7 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+        rel="stylesheet"> -->
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -72,6 +72,195 @@
 <!--       <object data="static/images/1.pdf" type="application/pdf" width="800px" height="550px"></object> -->
       <img src="static/images/1.png">
     </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The reward model has become increasingly important in alignment, assessment, and data construction for large language models (LLMs). Most existing researchers focus on enhancing reward models through data improvements, following the conventional training framework for reward models that directly optimizes the predicted rewards.</p>
+          <p>
+            In this paper, we propose a hybrid alignment framework <span class="dnerf">HaF-RM</span> for reward model training by introducing an additional constraint on token-level policy probabilities in addition to the reward score. 
+            It can simultaneously supervise the internal preference model at the token level and optimize the mapping layer of the reward model at the sequence level.</p>
+          <p>
+            Theoretical justifications and experiment results on five datasets show the validity and effectiveness of our proposed hybrid framework for training a high-quality reward model.
+            By decoupling the reward modeling procedure and incorporating hybrid supervision, our <span class="dnerf">HaF-RM</span> framework offers a principled and effective approach to enhancing the performance and alignment of reward models, a critical component in the responsible development of powerful language models. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+             Training the reward model involves aligning the model preference and learning a "preference-reward" projection. Initialized with well-trained LLM, the reward model has nearly aligned preference while it has to learn the projection from scratch.
+          </p>
+          <p>
+            DPO loss shares the same premise with reward loss. DPO model can be considered as a token-wise reward model which functions similarly with the standard reward model (sequence-wise). So we can use DPO loss as an auxiliary loss function to improve the stability of training process and further boost the reward model's performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Long-form QA -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: Overall Performance</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/overall.png">
+        </div>
+      </div>
+      <!-- <div class="column is-two-fifths">
+        <div class="content">
+          <img src="static/images/long-form-QA-mean.png">
+        </div>
+      </div> -->
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li>The <span class="dnerf">HaF</span> model can more sensitively identify whether an answer is good and give a more accurate high (or low) score.</li>
+            <li>The <span class="dnerf">HaF</span> model is basically not waker than the baseline under various circumstances.</li>
+          </p>
+
+          <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Long-form QA -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MT -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: Mixed Data</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/mixed.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li><span class="dnerf">HaF</span> can better learn the diversity present in the combined datasets for generalization.</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ MT -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MT -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: OOD Data</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/OOD.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li>DPO model converge to approximately 50% in a highly exaggerated manner, indicating a complete loss of modeling capability for OOD data.</li>
+          </p>
+          <p>
+            <li><span class="dnerf">HaF</span> possesses a strong ability to learn preferences and effectively generalize them to similar preference distributions, despite great differences in language style and topi</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ MT -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Ablation Study. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Downstream Task: Best-of-N</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center;">
+            <img src="static/images/wr.png" width="50%">
+            <img width="5%">
+            <img src="static/images/topkrecall.png" width="40%">
+          </div>
+          <p>
+            <li><span class="dnerf">HaF</span> demonstrates significant advantages over the baseline especially for Phi-2 model.</li>
+          </p>
+          <p>
+            <li>Top-k recall for baseline is close to the result with random selection, while <span class="dnerf">HaF</span> can effectively distinguish between responses when the quality differences are minimal.</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Ablation Study. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Ablation Study. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Downstream Task: RLHF</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center;">
+            <img src="static/images/rlhf.png" width="60%">
+          </div>
+          <p>
+            As the backbone models exhibit little harmfulness, the datasets used are irrelevant to the safety issue.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Ablation Study. -->
   </div>
 </section>
 
