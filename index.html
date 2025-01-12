@@ -70,7 +70,7 @@
       <h2 class="subtitle has-text-centered">
       </h2>
 <!--       <object data="static/images/1.pdf" type="application/pdf" width="800px" height="550px"></object> -->
-      <img src="static/images/1.png">
+      <img src="static/images/HAF-training-framework.jpg">
     </div>
   </div>
 </section>
@@ -99,6 +99,16 @@
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+      </h2>
+<!--       <object data="static/images/1.pdf" type="application/pdf" width="800px" height="550px"></object> -->
+      <img src="static/images/1.png">
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -113,6 +123,57 @@
             DPO loss shares the same premise with reward loss. DPO model can be considered as a token-wise reward model which functions similarly with the standard reward model (sequence-wise). So we can use DPO loss as an auxiliary loss function to improve the stability of training process and further boost the reward model's performance.
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Long-form QA -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Preliminary Study: Overall Performance</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 20px;">
+          <img src="static/images/reward-dif.png" width="50%">
+          <img src="static/images/reward-ppl-relevance.png" width="40%">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li>(Left)The reward difference of <span class="dnerf">HaF</span>-generated response and the other response predicted by <span class="dnerf">HaF</span> model tends to be higher than it should be. (Above y=x)</li>
+            <li>(Right)The token-wise perplexities of DPO model have a positive relevance with the rewards of the reward model when trained with the same dataset.</li>
+          </p>
+
+          <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Long-form QA -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <article class="message is-info">
+          <div class="message-header" style="font-size: 1.4rem;">
+            <p>Takeaway 1</p>
+          </div>
+          <div class="message-body" style="font-size: 1.2rem;">
+            <p> The internal preference model determines the token probabilities and the rewards.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -221,6 +282,24 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <article class="message is-success">
+          <div class="message-header" style="font-size: 1.4rem;">
+            <p>Takeaway 2</p>
+          </div>
+          <div class="message-body" style="font-size: 1.2rem;">
+            <p><span class="dnerf">HaF</span> has better intrinsic performances among reward models.</p>
+            <p>DPO is sensitive to the distribution shift.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Ablation Study. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -261,6 +340,23 @@
       </div>
     </div>
     <!--/ Ablation Study. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <article class="message is-warning">
+          <div class="message-header" style="font-size: 1.4rem;">
+            <p>Takeaway 3</p>
+          </div>
+          <div class="message-body" style="font-size: 1.2rem;">
+            <p> <span class="dnerf">HaF</span> generates more precise reward values during training and inference.</p>
+          </div>
+        </article>
+      </div>
+    </div>
   </div>
 </section>
 
